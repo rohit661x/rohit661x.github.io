@@ -8,11 +8,15 @@
     "formats": ["image/jpeg", "image/png"],
     "minimumCacheTTL": 60
   },
-  "routes": [
+  "headers": [
     {
-      "src": "/images/(.*)",
-      "headers": { "cache-control": "public, max-age=31536000, immutable" },
-      "continue": true
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 } 
