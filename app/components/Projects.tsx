@@ -45,7 +45,7 @@ const projects = [
     longDescription: "QuantGPT combines the power of large language models with financial data analysis to provide insights, generate trading strategies, and analyze market sentiment.",
     technologies: ["Python", "PyTorch", "Transformers", "FastAPI", "Redis", "PostgreSQL"],
     images: [
-      "/images/projects/project3/1-f57a573c.jpeg"
+      "/images/projects/project3/quantgpt-main.jpeg"
     ],
     github: "https://github.com/rohit661x/QuantGPT",
     live: "https://quantgpt-demo.com",
@@ -141,7 +141,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
       >
         {!imageError[currentImageIndex] ? (
           <Image
-            src={images[currentImageIndex]}
+            src={encodeURI(images[currentImageIndex])}
             alt={`Project image ${currentImageIndex + 1}`}
             fill
             className="object-cover"
