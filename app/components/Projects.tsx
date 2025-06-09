@@ -70,10 +70,10 @@ const projects = [
       "Statistical Analysis"
     ],
     images: [
-      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.33.12%20AM.jpg",
-      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.33.40%20AM.jpg",
-      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.34.08%20AM.jpg",
-      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.34.27%20AM.jpg"
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.33.12 AM.jpg",
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.33.40 AM.jpg",
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.34.08 AM.jpg",
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.34.27 AM.jpg"
     ],
     github: "https://github.com/rohit661x/Low-Latency-Network-Tester-Monitor-High-Frequency-Trading",
     highlights: [
@@ -89,6 +89,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [imageError, setImageError] = useState<boolean[]>(new Array(images.length).fill(false));
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -121,6 +122,14 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
     setTouchEnd(0);
   };
 
+  const handleImageError = (index: number) => {
+    setImageError(prev => {
+      const newErrors = [...prev];
+      newErrors[index] = true;
+      return newErrors;
+    });
+  };
+
   return (
     <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl group">
       <div
@@ -129,7 +138,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {images[currentImageIndex] ? (
+        {!imageError[currentImageIndex] ? (
           <Image
             src={images[currentImageIndex]}
             alt={`Project image ${currentImageIndex + 1}`}
@@ -139,15 +148,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={100}
             loading="eager"
-            onError={(e) => {
-              console.error(`Error loading image: ${images[currentImageIndex]}`);
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const fallback = target.parentElement;
-              if (fallback) {
-                fallback.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-gray-100"><span class="text-gray-400">Image not available</span></div>';
-              }
-            }}
+            onError={() => handleImageError(currentImageIndex)}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gray-100">
