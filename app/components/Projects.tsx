@@ -45,7 +45,7 @@ const projects = [
     longDescription: "QuantGPT combines the power of large language models with financial data analysis to provide insights, generate trading strategies, and analyze market sentiment.",
     technologies: ["Python", "PyTorch", "Transformers", "FastAPI", "Redis", "PostgreSQL"],
     images: [
-      "/images/projects/project3/5578703.jpg"
+      "/images/projects/project3/1-f57a573c.jpeg"
     ],
     github: "https://github.com/rohit661x/QuantGPT",
     live: "https://quantgpt-demo.com",
@@ -70,10 +70,10 @@ const projects = [
       "Statistical Analysis"
     ],
     images: [
-      "/images/projects/project4/latency-11-33-12 AM-jpg",
-      "/images/projects/project4/latency-11-33-40 AM-jpg",
-      "/images/projects/project4/latency-11-34-08 AM-jpg",
-      "/images/projects/project4/latency-11-34-27 AM-jpg"
+      "/images/projects/project4/latency-11-33-12 AM-jpg.jpeg",
+      "/images/projects/project4/latency-11-33-40 AM-jpg.jpeg",
+      "/images/projects/project4/latency-11-34-08 AM-jpg.jpeg",
+      "/images/projects/project4/latency-11-34-27 AM-jpg.jpeg"
     ],
     github: "https://github.com/rohit661x/Low-Latency-Network-Tester-Monitor-High-Frequency-Trading",
     highlights: [
