@@ -70,10 +70,10 @@ const projects = [
       "Statistical Analysis"
     ],
     images: [
-      "/images/projects/project4/latency-11-33-12 AM-jpg.jpeg",
-      "/images/projects/project4/latency-11-33-40 AM-jpg.jpeg",
-      "/images/projects/project4/latency-11-34-08 AM-jpg.jpeg",
-      "/images/projects/project4/latency-11-34-27 AM-jpg.jpeg"
+      "/images/projects/project4/latency3312.jpeg",
+      "/images/projects/project4/latency3340.jpeg",
+      "/images/projects/project4/latency3408.jpeg",
+      "/images/projects/project4/latency3427.jpeg"
     ],
     github: "https://github.com/rohit661x/Low-Latency-Network-Tester-Monitor-High-Frequency-Trading",
     highlights: [
@@ -90,6 +90,54 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [imageError, setImageError] = useState<boolean[]>(new Array(images.length).fill(false));
+  const [imageLoadStatus, setImageLoadStatus] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    // Reset error states when images array changes
+    setImageError(new Array(images.length).fill(false));
+    setImageLoadStatus({});
+
+    // Preload and verify images
+    images.forEach((src, index) => {
+      const img = new window.Image();
+      
+      img.onload = () => {
+        console.log(`✅ Image loaded successfully:`, {
+          src,
+          index,
+          dimensions: `${img.width}x${img.height}`,
+          naturalDimensions: `${img.naturalWidth}x${img.naturalHeight}`
+        });
+        setImageLoadStatus(prev => ({
+          ...prev,
+          [src]: 'loaded'
+        }));
+      };
+
+      img.onerror = (e) => {
+        console.error(`❌ Failed to load image:`, {
+          src,
+          index,
+          error: e,
+          currentPath: window.location.pathname,
+          fullUrl: new URL(src, window.location.origin).href
+        });
+        handleImageError(index);
+        setImageLoadStatus(prev => ({
+          ...prev,
+          [src]: 'error'
+        }));
+      };
+
+      // Start loading
+      console.log(`🔄 Attempting to load image:`, {
+        src,
+        index,
+        absolutePath: new URL(src, window.location.origin).href
+      });
+      img.src = src;
+    });
+  }, [images]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -123,7 +171,13 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   };
 
   const handleImageError = (index: number) => {
-    console.error(`Error loading image: ${images[index]}`);
+    console.error(`Image error details:`, {
+      index,
+      path: images[index],
+      absolutePath: new URL(images[index], window.location.origin).href,
+      allPaths: images,
+      loadStatus: imageLoadStatus
+    });
     setImageError(prev => {
       const newErrors = [...prev];
       newErrors[index] = true;
@@ -141,7 +195,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
       >
         {!imageError[currentImageIndex] ? (
           <Image
-            src={encodeURI(images[currentImageIndex])}
+            src={images[currentImageIndex]}
             alt={`Project image ${currentImageIndex + 1}`}
             fill
             className="object-cover"
@@ -149,15 +203,23 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={100}
             loading="eager"
-            onError={() => {
-              console.error(`Failed to load image: ${images[currentImageIndex]}`);
-              handleImageError(currentImageIndex);
+            onError={() => handleImageError(currentImageIndex)}
+            onLoad={(e) => {
+              const img = e.target as HTMLImageElement;
+              console.log(`✅ Next/Image loaded:`, {
+                src: images[currentImageIndex],
+                index: currentImageIndex,
+                dimensions: `${img.width}x${img.height}`
+              });
             }}
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100">
             <span className="text-gray-400 mb-2">Image not available</span>
-            <span className="text-gray-400 text-sm">{images[currentImageIndex]}</span>
+            <span className="text-gray-400 text-sm break-all px-4">{images[currentImageIndex]}</span>
+            <span className="text-gray-400 text-xs mt-2">
+              Status: {imageLoadStatus[images[currentImageIndex]] || 'unknown'}
+            </span>
           </div>
         )}
 
