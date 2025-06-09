@@ -54,6 +54,34 @@ const projects = [
       "Implemented real-time market sentiment analysis",
       "Created automated report generation system"
     ]
+  },
+  {
+    title: "Low Latency Network Tester for High Frequency Trading",
+    description: "A specialized network diagnostics tool for high-frequency trading environments, focusing on microsecond-level latency monitoring and analysis.",
+    longDescription: "A comprehensive network performance analysis tool specifically engineered for high-frequency trading environments. Features include microsecond-precision latency monitoring, real-time performance visualization, automated alert systems, and detailed statistical analysis. The tool provides critical insights for optimizing network infrastructure in latency-sensitive trading operations.",
+    technologies: [
+      "Linux",
+      "Bash",
+      "Python",
+      "Shell Scripting",
+      "Network Protocols",
+      "Matplotlib",
+      "Real-time Monitoring",
+      "Statistical Analysis"
+    ],
+    images: [
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.33.12 AM.jpg",
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.33.40 AM.jpg",
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.34.08 AM.jpg",
+      "/images/projects/project4/Screenshot 2025-06-09 at 11.34.27 AM.jpg"
+    ],
+    github: "https://github.com/rohit661x/Low-Latency-Network-Tester-Monitor-High-Frequency-Trading",
+    highlights: [
+      "Engineered high-precision network monitoring system with microsecond-level accuracy",
+      "Developed real-time visualization tools for latency metrics and performance analysis",
+      "Implemented automated alert system for latency threshold violations and network anomalies",
+      "Created comprehensive statistical analysis module for network performance metrics"
+    ]
   }
 ];
 
