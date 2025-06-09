@@ -1,0 +1,11 @@
+{
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "cleanUrls": true,
+  "public": true,
+  "images": {
+    "domains": ["rohit661x-github-io.vercel.app"],
+    "formats": ["image/jpeg", "image/png"],
+    "minimumCacheTTL": 60
+  }
+} 
