@@ -70,10 +70,10 @@ const projects = [
       "Statistical Analysis"
     ],
     images: [
-      "/images/projects/project4/Screenshot 2025-06-09 at 11.33.12 AM.jpg",
-      "/images/projects/project4/Screenshot 2025-06-09 at 11.33.40 AM.jpg",
-      "/images/projects/project4/Screenshot 2025-06-09 at 11.34.08 AM.jpg",
-      "/images/projects/project4/Screenshot 2025-06-09 at 11.34.27 AM.jpg"
+      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.33.12%20AM.jpg",
+      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.33.40%20AM.jpg",
+      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.34.08%20AM.jpg",
+      "/images/projects/project4/Screenshot%202025-06-09%20at%2011.34.27%20AM.jpg"
     ],
     github: "https://github.com/rohit661x/Low-Latency-Network-Tester-Monitor-High-Frequency-Trading",
     highlights: [
