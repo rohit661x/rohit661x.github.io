@@ -123,6 +123,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   };
 
   const handleImageError = (index: number) => {
+    console.error(`Error loading image: ${images[index]}`);
     setImageError(prev => {
       const newErrors = [...prev];
       newErrors[index] = true;
@@ -148,11 +149,15 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={100}
             loading="eager"
-            onError={() => handleImageError(currentImageIndex)}
+            onError={() => {
+              console.error(`Failed to load image: ${images[currentImageIndex]}`);
+              handleImageError(currentImageIndex);
+            }}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <span className="text-gray-400">Image not available</span>
+          <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100">
+            <span className="text-gray-400 mb-2">Image not available</span>
+            <span className="text-gray-400 text-sm">{images[currentImageIndex]}</span>
           </div>
         )}
 
