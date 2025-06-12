@@ -138,7 +138,7 @@ const Resume = () => {
           <div className="mt-8 mb-8 relative max-w-2xl mx-auto cursor-pointer" onClick={() => setIsImageEnlarged(!isImageEnlarged)}>
             <div className={`transition-all duration-300 ${isImageEnlarged ? 'scale-150 z-50' : 'scale-100'}`}>
               <Image
-                src="/images/resume/1749003596791-0c608c23-e791-4296-8ad3-551139040b42_1.jpg"
+                src="/images/resume/1749722581874-86355118-689d-4f9e-a1f3-e88106ccee4f_1.jpg"
                 alt="Resume Preview"
                 width={800}
                 height={1000}
@@ -149,7 +149,7 @@ const Resume = () => {
           </div>
 
           <a
-            href="/images/resume/1749003596791-0c608c23-e791-4296-8ad3-551139040b42_1.jpg"
+            href="/images/resume/1749722581874-86355118-689d-4f9e-a1f3-e88106ccee4f_1.jpg"
             download="Rohit_Suryadevara_Resume.jpg"
             className="inline-flex items-center gap-2 px-6 py-3 mt-6 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
             target="_blank"
